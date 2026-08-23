@@ -6,8 +6,7 @@ const bookForm = document.getElementById("bookForm");
 
 if (bookForm) {
 
-    // Form Submit Event
-    bookForm.addEventListener("submit", function (event) {
+    bookForm.addEventListener("submit", async function (event) {
 
         // Stop Page Refresh
         event.preventDefault();
@@ -18,12 +17,8 @@ if (bookForm) {
         const category = document.getElementById("category").value;
         const copies = document.getElementById("copies").value;
 
-        // Get Existing Books
-        let books = JSON.parse(localStorage.getItem("books")) || [];
-
         // Create Book Object
         const book = {
-            id: books.length + 1,
             title: title,
             author: author,
             category: category,
@@ -31,32 +26,38 @@ if (bookForm) {
             availableCopies: Number(copies)
         };
 
-        // Add New Book
-        books.push(book);
+        try {
 
-        // Save in localStorage
-        localStorage.setItem("books", JSON.stringify(books));
+            // Save Book through API
+            const newBook = await addBook(book);
 
-        // Show Saved Data
-        console.log("Saved Books:", books);
+            console.log("Saved Book:", newBook);
 
-        // Success Message
-        const message = document.getElementById("message");
+            // Success Message
+            const message = document.getElementById("message");
 
-        message.innerText = "✔ Book added successfully!";
-        message.style.display = "block";
+            message.innerText = "✔ Book added successfully!";
+            message.style.display = "block";
 
-        // Hide Message after 3 Seconds
-        setTimeout(function () {
-            message.style.display = "none";
-        }, 3000);
+            // Hide Message after 3 Seconds
+            setTimeout(function () {
+                message.style.display = "none";
+            }, 3000);
 
-        // Clear Form
-        bookForm.reset();
+            // Clear Form
+            bookForm.reset();
+
+        } catch (error) {
+
+            alert("Cannot reach the server");
+
+            console.error(error);
+        }
 
     });
 
 }
+
 
 // ===============================
 // Books Page
@@ -67,10 +68,12 @@ const search = document.getElementById("search");
 
 if (tableBody) {
 
-    // Get Books from localStorage
-    let books = JSON.parse(localStorage.getItem("books")) || [];
+    let books = [];
 
+    // ===============================
     // Function to Display Books
+    // ===============================
+
     function displayBooks(bookList) {
 
         tableBody.innerHTML = "";
@@ -79,7 +82,7 @@ if (tableBody) {
 
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6">No Books Found</td>
+                    <td colspan="6">No books added yet</td>
                 </tr>
             `;
 
@@ -104,10 +107,47 @@ if (tableBody) {
 
     }
 
-    // Show All Books
-    displayBooks(books);
 
+    // ===============================
+    // Load Books from API
+    // ===============================
+
+    async function loadBooks() {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6">Loading...</td>
+            </tr>
+        `;
+
+        try {
+
+            books = await getBooks();
+
+            displayBooks(books);
+
+        } catch (error) {
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">Cannot reach the server</td>
+                </tr>
+            `;
+
+            console.error(error);
+        }
+
+    }
+
+
+    // Load All Books
+    loadBooks();
+
+
+    // ===============================
     // Search Books
+    // ===============================
+
     if (search) {
 
         search.addEventListener("keyup", function () {
