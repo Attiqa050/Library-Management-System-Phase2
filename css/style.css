@@ -1,7 +1,4 @@
-/* ==========================================
-   RESET
-========================================== */
-
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -9,20 +6,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/* ==========================================
-   BODY
-========================================== */
-
+/* Body */
 body {
     background-color: whitesmoke;
 }
 
-
-/* ==========================================
-   NAVBAR
-========================================== */
-
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,11 +54,7 @@ body {
     color: yellow;
 }
 
-
-/* ==========================================
-   WELCOME SECTION
-========================================== */
-
+/* Welcome Section */
 .welcome {
     text-align: center;
     margin-top: 40px;
@@ -86,11 +71,7 @@ body {
     font-size: 18px;
 }
 
-
-/* ==========================================
-   DASHBOARD
-========================================== */
-
+/* Dashboard */
 .dashboard {
     display: flex;
     justify-content: center;
@@ -123,11 +104,7 @@ body {
     color: black;
 }
 
-
-/* ==========================================
-   FORM CONTAINER
-========================================== */
-
+/* Form Container */
 .form-container {
     width: 90%;
     max-width: 1100px;
@@ -145,11 +122,7 @@ body {
     font-size: 30px;
 }
 
-
-/* ==========================================
-   INPUT GROUP
-========================================== */
-
+/* Input Group */
 .input-group {
     margin-bottom: 20px;
 }
@@ -177,11 +150,7 @@ body {
     box-shadow: 0px 0px 5px lightblue;
 }
 
-
-/* ==========================================
-   BUTTON
-========================================== */
-
+/* Button */
 .btn {
     width: 100%;
     padding: 12px;
@@ -201,11 +170,7 @@ body {
     transform: scale(1.02);
 }
 
-
-/* ==========================================
-   SUCCESS MESSAGE
-========================================== */
-
+/* Success Message */
 #message {
     display: none;
     background-color: #d4edda;
@@ -217,11 +182,7 @@ body {
     font-weight: bold;
 }
 
-
-/* ==========================================
-   BOOKS TABLE
-========================================== */
-
+/* Books Table */
 .books-table {
     width: 100%;
     border-collapse: collapse;
@@ -248,11 +209,7 @@ body {
     background-color: #e8f5e9;
 }
 
-
-/* ==========================================
-   SEARCH BOX
-========================================== */
-
+/* Search Box */
 #search {
     width: 100%;
     padding: 10px;
