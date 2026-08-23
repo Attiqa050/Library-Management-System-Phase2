@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Book | Library Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 LibraryMS
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="add-book.html">Add Book</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="issue-book.html" class="active">Issue Book</a></li>
+            <li><a href="issued-books.html">Issued Books</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- ================= Issue Book Form ================= -->
+
+    <section class="form-container">
+
+        <div id="message"></div>
+
+        <h1>Issue Book</h1>
+
+        <form id="issueForm">
+
+            <!-- Select Book -->
+
+            <div class="input-group">
+                <label for="book">Select Book</label>
+                <select id="book" required>
+                    <option value="">-- Select Book --</option>
+                </select>
+            </div>
+
+            <!-- Select Member -->
+
+            <div class="input-group">
+                <label for="member">Select Member</label>
+                <select id="member" required>
+                    <option value="">-- Select Member --</option>
+                </select>
+            </div>
+
+            <!-- Issue Date -->
+
+            <div class="input-group">
+                <label for="issueDate">Issue Date</label>
+                <input type="date" id="issueDate" required>
+            </div>
+
+            <!-- Due Date -->
+
+            <div class="input-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" readonly>
+            </div>
+
+            <!-- Submit Button -->
+
+            <button type="submit" class="btn">
+                Issue Book
+            </button>
+
+        </form>
+
+    </section>
+
+    <script src="../js/issue.js"></script>
+
+</body>
+
+</html>

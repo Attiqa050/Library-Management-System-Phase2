@@ -1,0 +1,261 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+body {
+    background-color: whitesmoke;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: navy;
+    padding: 15px 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: yellow;
+}
+
+.active {
+    color: yellow;
+}
+
+
+/* ==========================================
+   WELCOME SECTION
+========================================== */
+
+.welcome {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.welcome h1 {
+    color: navy;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: gray;
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+.dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    width: 250px;
+    background-color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px lightgray;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    color: navy;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 18px;
+    color: black;
+}
+
+
+/* ==========================================
+   FORM CONTAINER
+========================================== */
+
+.form-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px lightgray;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: navy;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+
+/* ==========================================
+   INPUT GROUP
+========================================== */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: royalblue;
+    box-shadow: 0px 0px 5px lightblue;
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: royalblue;
+    transform: scale(1.02);
+}
+
+
+/* ==========================================
+   SUCCESS MESSAGE
+========================================== */
+
+#message {
+    display: none;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   BOOKS TABLE
+========================================== */
+
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.books-table th,
+.books-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.books-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.books-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.books-table tr:hover {
+    background-color: #e8f5e9;
+}
+
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+#search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}

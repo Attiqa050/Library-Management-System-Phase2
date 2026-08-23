@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issued Books | Library Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 LibraryMS
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="add-book.html">Add Book</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="issue-book.html">Issue Book</a></li>
+            <li><a href="issued-books.html" class="active">Issued Books</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- ================= Issued Books Table ================= -->
+
+    <section class="form-container">
+
+        <h1>Issued Books</h1>
+
+        <table class="books-table">
+
+            <thead>
+
+                <tr>
+                    <th>Issue ID</th>
+                    <th>Book</th>
+                    <th>Member</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Fine</th>
+                    <th>Return</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="issuedTableBody">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <script src="../js/issued-books.js"></script>
+
+</body>
+
+</html>
