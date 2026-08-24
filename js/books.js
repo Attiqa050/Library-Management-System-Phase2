@@ -11,6 +11,13 @@ if (bookForm) {
         // Stop Page Refresh
         event.preventDefault();
 
+        // Get Submit Button
+        const submitButton = bookForm.querySelector('button[type="submit"]');
+
+        // Disable Button While Request is Running
+        submitButton.disabled = true;
+        submitButton.innerText = "Adding...";
+
         // Get Input Values
         const title = document.getElementById("title").value;
         const author = document.getElementById("author").value;
@@ -52,6 +59,12 @@ if (bookForm) {
             alert("Cannot reach the server");
 
             console.error(error);
+
+        } finally {
+
+            // Enable Button Again
+            submitButton.disabled = false;
+            submitButton.innerText = "Add Book";
         }
 
     });
@@ -70,10 +83,7 @@ if (tableBody) {
 
     let books = [];
 
-    // ===============================
     // Function to Display Books
-    // ===============================
-
     function displayBooks(bookList) {
 
         tableBody.innerHTML = "";
@@ -108,10 +118,7 @@ if (tableBody) {
     }
 
 
-    // ===============================
     // Load Books from API
-    // ===============================
-
     async function loadBooks() {
 
         tableBody.innerHTML = `
@@ -144,10 +151,7 @@ if (tableBody) {
     loadBooks();
 
 
-    // ===============================
     // Search Books
-    // ===============================
-
     if (search) {
 
         search.addEventListener("keyup", function () {
