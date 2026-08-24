@@ -9,206 +9,282 @@ const dueDate = document.getElementById("dueDate");
 const issueForm = document.getElementById("issueForm");
 const message = document.getElementById("message");
 
-// ===============================
-// Function: Load All Books (Show all books, even if 0 copies)
-// ===============================
+let books = [];
+let members = [];
 
-function loadAllBooks() {
-    let books = JSON.parse(localStorage.getItem("books")) || [];
-    
-    // Clear dropdown
-    bookSelect.innerHTML = `<option value="">-- Select Book --</option>`;
-    
-    if (books.length === 0) {
-        bookSelect.innerHTML += `<option value="" disabled>📭 No books in library</option>`;
-    } else {
+
+// Load Books
+async function loadBooks() {
+
+    bookSelect.innerHTML =
+        `<option value="">Loading...</option>`;
+
+    try {
+
+        books = await getBooks();
+
+        bookSelect.innerHTML =
+            `<option value="">-- Select Book --</option>`;
+
+        if (books.length === 0) {
+
+            bookSelect.innerHTML +=
+                `<option disabled>No books added yet</option>`;
+
+            return;
+        }
+
         books.forEach(function (book) {
-            // Show all books with their available copies
-            let status = book.availableCopies > 0 ? `${book.availableCopies} available` : "❌ Not Available";
-            bookSelect.innerHTML += `
-                <option value="${book.id}">
-                    ${book.title} (${status})
-                </option>
-            `;
+
+            let status;
+
+            if (book.availableCopies > 0) {
+                status = book.availableCopies + " available";
+            } else {
+                status = "Not Available";
+            }
+
+            const option = document.createElement("option");
+
+            option.value = book.id;
+
+            option.textContent =
+                book.title + " (" + status + ")";
+
+            option.dataset.title = book.title;
+
+            option.dataset.fullText =
+                book.title + " (" + status + ")";
+
+            bookSelect.appendChild(option);
         });
+
+    } catch (error) {
+
+        bookSelect.innerHTML =
+            `<option>Cannot reach the server</option>`;
+
+        console.error(error);
     }
 }
 
-// ===============================
-// Function: Load Members
-// ===============================
 
-function loadMembers() {
-    let members = JSON.parse(localStorage.getItem("members")) || [];
-    
-    memberSelect.innerHTML = `<option value="">-- Select Member --</option>`;
-    
-    if (members.length === 0) {
-        memberSelect.innerHTML += `<option value="" disabled>No members registered</option>`;
-    } else {
+// Show Availability When Dropdown Opens
+bookSelect.addEventListener("mousedown", function () {
+
+    for (let option of bookSelect.options) {
+
+        if (option.dataset.fullText) {
+            option.textContent = option.dataset.fullText;
+        }
+    }
+
+});
+
+
+// Show Only Book Name After Selection
+bookSelect.addEventListener("change", function () {
+
+    const selectedOption =
+        bookSelect.options[bookSelect.selectedIndex];
+
+    if (selectedOption.dataset.title) {
+
+        selectedOption.textContent =
+            selectedOption.dataset.title;
+    }
+
+});
+
+
+// Load Members
+async function loadMembers() {
+
+    memberSelect.innerHTML =
+        `<option value="">Loading...</option>`;
+
+    try {
+
+        members = await getMembers();
+
+        memberSelect.innerHTML =
+            `<option value="">-- Select Member --</option>`;
+
+        if (members.length === 0) {
+
+            memberSelect.innerHTML +=
+                `<option disabled>No members added yet</option>`;
+
+            return;
+        }
+
         members.forEach(function (member) {
+
             memberSelect.innerHTML += `
                 <option value="${member.id}">
                     ${member.name}
                 </option>
             `;
         });
+
+    } catch (error) {
+
+        memberSelect.innerHTML =
+            `<option>Cannot reach the server</option>`;
+
+        console.error(error);
     }
 }
 
-// ===============================
-// Function: Set Due Date (14 days from issue date)
-// ===============================
 
-function updateDueDate() {
-    if (issueDate.value) {
-        let date = new Date(issueDate.value);
-        date.setDate(date.getDate() + 14);
-        dueDate.value = date.toISOString().split("T")[0];
-    } else {
+// Due Date = Issue Date + 14 Days
+issueDate.addEventListener("change", function () {
+
+    if (!issueDate.value) {
+
         dueDate.value = "";
+        return;
     }
-}
 
-// ===============================
-// Load Everything on Page Load
-// ===============================
+    const date = new Date(issueDate.value);
 
-loadAllBooks();
+    date.setDate(date.getDate() + 14);
+
+    dueDate.value =
+        date.toISOString().split("T")[0];
+});
+
+
+// Issue Book
+issueForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const bookId = bookSelect.value;
+    const memberId = memberSelect.value;
+
+    if (
+        !bookId ||
+        !memberId ||
+        !issueDate.value ||
+        !dueDate.value
+    ) {
+
+        alert("Please fill all fields!");
+        return;
+    }
+
+
+    const selectedBook = books.find(function (book) {
+
+        return String(book.id) === String(bookId);
+
+    });
+
+
+    if (!selectedBook) {
+
+        alert("Book not found!");
+        return;
+    }
+
+
+    // Stop Over-Issue
+    if (selectedBook.availableCopies <= 0) {
+
+        alert("Book not available! All copies are issued.");
+        return;
+    }
+
+
+    const submitButton =
+        issueForm.querySelector('button[type="submit"]');
+
+    // Double Click Protection
+    submitButton.disabled = true;
+    submitButton.innerText = "Issuing...";
+
+    let createdIssue = null;
+
+
+    try {
+
+        const issue = {
+            bookId: bookId,
+            memberId: memberId,
+            issueDate: issueDate.value,
+            dueDate: dueDate.value,
+            returnDate: "",
+            fine: 0
+        };
+
+
+        // Call 1: Create Issue
+        createdIssue = await addIssue(issue);
+
+
+        // Call 2: Reduce Available Copies
+        await updateBook(bookId, {
+
+            availableCopies:
+                selectedBook.availableCopies - 1
+
+        });
+
+
+        // Success Message
+        message.innerText =
+            "✔ Book issued successfully!";
+
+        message.style.display = "block";
+
+
+        setTimeout(function () {
+
+            message.style.display = "none";
+
+        }, 3000);
+
+
+        // Reset Form
+        issueForm.reset();
+        dueDate.value = "";
+
+
+        // Reload Updated Books
+        await loadBooks();
+
+    } catch (error) {
+
+        // Rollback if first call worked
+        if (createdIssue && createdIssue.id) {
+
+            try {
+
+                await deleteIssue(createdIssue.id);
+
+            } catch (rollbackError) {
+
+                console.error(rollbackError);
+            }
+        }
+
+        alert("Cannot complete the issue!");
+
+        console.error(error);
+
+    } finally {
+
+        submitButton.disabled = false;
+        submitButton.innerText = "Issue Book";
+    }
+
+});
+
+
+// Load Page Data
+loadBooks();
 loadMembers();
-
-// ===============================
-// Clear issue date on page load (user will select)
-// ===============================
 
 issueDate.value = "";
 dueDate.value = "";
-
-// ===============================
-// Update Due Date When Issue Date Changes
-// ===============================
-
-issueDate.addEventListener("change", function () {
-    updateDueDate();
-});
-
-// ===============================
-// Form Submit - Issue Book
-// ===============================
-
-issueForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let bookId = Number(bookSelect.value);
-    let memberId = Number(memberSelect.value);
-    let issueDateValue = issueDate.value;
-    let dueDateValue = dueDate.value;
-
-    // ===============================
-    // Check: All fields filled?
-    // ===============================
-
-    if (!bookId || !memberId || !issueDateValue || !dueDateValue) {
-        alert("❌ Please fill all fields!");
-        return;
-    }
-
-    // ===============================
-    // Get Data from localStorage
-    // ===============================
-
-    let books = JSON.parse(localStorage.getItem("books")) || [];
-    let members = JSON.parse(localStorage.getItem("members")) || [];
-    let issuedBooks = JSON.parse(localStorage.getItem("issuedBooks")) || [];
-
-    // ===============================
-    // Find Selected Book
-    // ===============================
-
-    let selectedBook = books.find(book => book.id === bookId);
-
-    if (!selectedBook) {
-        alert("❌ Book not found!");
-        return;
-    }
-
-    // ===============================
-    // Check: Book Available?
-    // ===============================
-
-    if (selectedBook.availableCopies <= 0) {
-        alert("❌ Book not available! All copies are issued.");
-        loadAllBooks();
-        return;
-    }
-
-    // ===============================
-    // Check: Member Exists?
-    // ===============================
-
-    let selectedMember = members.find(member => member.id === memberId);
-
-    if (!selectedMember) {
-        alert("❌ Member not found!");
-        return;
-    }
-
-    // ===============================
-    // Create Issue Record
-    // ===============================
-
-    let issue = {
-        issueId: issuedBooks.length + 1,
-        bookId: bookId,
-        memberId: memberId,
-        issueDate: issueDateValue,
-        dueDate: dueDateValue,
-        returnDate: "",
-        fine: 0
-    };
-
-    // ===============================
-    // Save Issue
-    // ===============================
-
-    issuedBooks.push(issue);
-    localStorage.setItem("issuedBooks", JSON.stringify(issuedBooks));
-
-    // ===============================
-    // Reduce Available Copies
-    // ===============================
-
-    selectedBook.availableCopies--;
-    localStorage.setItem("books", JSON.stringify(books));
-
-    // ===============================
-    // Show Success Message
-    // ===============================
-
-    message.innerText = "✔ Book Issued Successfully!";
-    message.style.display = "block";
-    message.style.backgroundColor = "#d4edda";
-    message.style.color = "#155724";
-    message.style.padding = "12px";
-    message.style.borderRadius = "5px";
-    message.style.marginBottom = "15px";
-
-    setTimeout(function () {
-        message.style.display = "none";
-    }, 3000);
-
-    // ===============================
-    // Reset Form
-    // ===============================
-
-    bookSelect.value = "";
-    memberSelect.value = "";
-    issueDate.value = "";
-    dueDate.value = "";
-
-    // Refresh dropdown
-    loadAllBooks();
-
-    console.log("✅ Book Issued Successfully!");
-    console.log("Remaining copies:", selectedBook.availableCopies);
-});
