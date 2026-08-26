@@ -8,52 +8,36 @@ if (memberForm) {
 
     memberForm.addEventListener("submit", async function (event) {
 
-        // Stop Page Refresh
         event.preventDefault();
 
-        // Get Submit Button
-        const submitButton = memberForm.querySelector('button[type="submit"]');
+        const submitButton =
+            memberForm.querySelector('button[type="submit"]');
 
-        // Disable Button While Request is Running
         submitButton.disabled = true;
         submitButton.innerText = "Adding...";
 
-        // Get Input Values
-        const name = document.getElementById("name").value;
-        const rollNo = document.getElementById("rollNo").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-
-        // Create Member Object
         const member = {
-            name: name,
-            rollNo: rollNo,
-            email: email,
-            phone: phone
+            name: document.getElementById("name").value,
+            rollNo: document.getElementById("rollNo").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value
         };
 
         try {
 
-            // Save Member through API
-            const newMember = await addMember(member);
+            await addMember(member);
 
-            console.log("Saved Member:", newMember);
-
-            // Success Message
             const message = document.getElementById("message");
 
             message.innerText = "✔ Member added successfully!";
             message.style.display = "block";
 
-            // Hide Message after 3 Seconds
             setTimeout(function () {
                 message.style.display = "none";
             }, 3000);
 
-            // Clear Form
             memberForm.reset();
 
-            // Reload Members Table
             await loadMembers();
 
         } catch (error) {
@@ -63,13 +47,11 @@ if (memberForm) {
 
         } finally {
 
-            // Enable Button Again
             submitButton.disabled = false;
             submitButton.innerText = "Add Member";
         }
 
     });
-
 }
 
 
@@ -77,7 +59,8 @@ if (memberForm) {
 // Members List
 // ===============================
 
-const memberTableBody = document.getElementById("memberTableBody");
+const memberTableBody =
+    document.getElementById("memberTableBody");
 
 
 // Display Members
@@ -91,28 +74,38 @@ function displayMembers(memberList) {
 
         memberTableBody.innerHTML = `
             <tr>
-                <td colspan="5">No members added yet</td>
+                <td colspan="6">No members added yet</td>
             </tr>
         `;
 
-    } else {
-
-        memberList.forEach(function (member) {
-
-            memberTableBody.innerHTML += `
-                <tr>
-                    <td>${member.id}</td>
-                    <td>${member.name}</td>
-                    <td>${member.rollNo}</td>
-                    <td>${member.email}</td>
-                    <td>${member.phone}</td>
-                </tr>
-            `;
-
-        });
-
+        return;
     }
 
+    memberList.forEach(function (member) {
+
+        memberTableBody.innerHTML += `
+            <tr>
+                <td>${member.id}</td>
+                <td>${member.name}</td>
+                <td>${member.rollNo}</td>
+                <td>${member.email}</td>
+                <td>${member.phone}</td>
+
+                <td>
+                    <a href="edit-member.html?id=${member.id}"
+                       class="edit-btn">
+                        Edit
+                    </a>
+
+                    <button class="delete-btn"
+                        onclick="removeMember('${member.id}')">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `;
+
+    });
 }
 
 
@@ -126,7 +119,7 @@ async function loadMembers() {
 
     memberTableBody.innerHTML = `
         <tr>
-            <td colspan="5">Loading...</td>
+            <td colspan="6">Loading...</td>
         </tr>
     `;
 
@@ -140,14 +133,60 @@ async function loadMembers() {
 
         memberTableBody.innerHTML = `
             <tr>
-                <td colspan="5">Cannot reach the server</td>
+                <td colspan="6">Cannot reach the server</td>
             </tr>
         `;
 
         console.error(error);
     }
-
 }
+
+
+// ===============================
+// Delete Member
+// ===============================
+
+window.removeMember = async function (memberId) {
+
+    const confirmDelete =
+        confirm("Are you sure you want to delete this member?");
+
+    if (!confirmDelete) return;
+
+    try {
+
+        const issues = await getIssues();
+
+        const activeIssue = issues.find(function (issue) {
+
+            return (
+                String(issue.memberId) === String(memberId) &&
+                issue.returnDate === ""
+            );
+
+        });
+
+        if (activeIssue) {
+
+            alert(
+                "Cannot delete this member because a book is currently issued to them."
+            );
+
+            return;
+        }
+
+        await deleteMember(memberId);
+
+        alert("Member deleted successfully!");
+
+        await loadMembers();
+
+    } catch (error) {
+
+        alert("Cannot reach the server");
+        console.error(error);
+    }
+};
 
 
 // Load All Members

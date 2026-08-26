@@ -12,7 +12,6 @@
 
 <body>
 
-
     <nav class="navbar">
 
         <div class="logo">
@@ -30,6 +29,7 @@
 
     </nav>
 
+
     <!-- ================= Add Member Form ================= -->
 
     <section class="form-container">
@@ -42,45 +42,71 @@
 
             <div class="input-group">
                 <label for="name">Member Name</label>
-                <input type="text" id="name" placeholder="Enter Member Name" required>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter Member Name"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="rollNo">Roll Number</label>
-                <input type="text" id="rollNo" placeholder="Enter Roll Number" required>
+                <input
+                    type="text"
+                    id="rollNo"
+                    placeholder="Enter Roll Number"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Enter Email Address" required>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email Address"
+                    required
+                >
             </div>
 
             <div class="input-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="Enter Phone Number" required>
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter Phone Number"
+                    required
+                >
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn">
                 Add Member
             </button>
 
         </form>
 
+
         <hr>
+
+
+        <!-- ================= Members List ================= -->
 
         <h2>Members List</h2>
 
         <table class="books-table">
 
             <thead>
+
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Roll No</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Actions</th>
                 </tr>
+
             </thead>
 
             <tbody id="memberTableBody">

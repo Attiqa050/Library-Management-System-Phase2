@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Member | Library Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 LibraryMS
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="add-book.html">Add Book</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="issue-book.html">Issue Book</a></li>
+            <li><a href="issued-books.html">Issued Books</a></li>
+        </ul>
+
+    </nav>
+
+    <section class="form-container">
+
+        <h1>Edit Member</h1>
+
+        <form id="editMemberForm">
+
+            <div class="input-group">
+                <label for="name">Member Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="rollNo">Roll Number</label>
+                <input type="text" id="rollNo" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <button type="submit" class="btn">
+                Save Changes
+            </button>
+
+        </form>
+
+    </section>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/edit-member.js"></script>
+
+</body>
+
+</html>

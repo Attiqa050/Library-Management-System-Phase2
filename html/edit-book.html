@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Book | Library Management System</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 LibraryMS
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="add-book.html">Add Book</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="issue-book.html">Issue Book</a></li>
+            <li><a href="issued-books.html">Issued Books</a></li>
+        </ul>
+
+    </nav>
+
+    <section class="form-container">
+
+        <h1>Edit Book</h1>
+
+        <form id="editBookForm">
+
+            <div class="input-group">
+                <label for="title">Book Title</label>
+                <input type="text" id="title" required>
+            </div>
+
+            <div class="input-group">
+                <label for="author">Author Name</label>
+                <input type="text" id="author" required>
+            </div>
+
+            <div class="input-group">
+                <label for="category">Category</label>
+                <input type="text" id="category" required>
+            </div>
+
+            <div class="input-group">
+                <label for="copies">Total Copies</label>
+                <input type="number" id="copies" min="1" required>
+            </div>
+
+            <button type="submit" class="btn">
+                Save Changes
+            </button>
+
+        </form>
+
+    </section>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/edit-book.js"></script>
+
+</body>
+
+</html>

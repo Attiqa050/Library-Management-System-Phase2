@@ -216,3 +216,24 @@ body {
     margin-bottom: 20px;
     font-size: 16px;
 }
+.edit-btn,
+.delete-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 100px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: blue;
+}
+
+.delete-btn {
+    background-color: red;
+}

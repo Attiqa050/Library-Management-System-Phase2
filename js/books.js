@@ -8,67 +8,48 @@ if (bookForm) {
 
     bookForm.addEventListener("submit", async function (event) {
 
-        // Stop Page Refresh
         event.preventDefault();
 
-        // Get Submit Button
-        const submitButton = bookForm.querySelector('button[type="submit"]');
+        const submitButton =
+            bookForm.querySelector('button[type="submit"]');
 
-        // Disable Button While Request is Running
         submitButton.disabled = true;
         submitButton.innerText = "Adding...";
 
-        // Get Input Values
-        const title = document.getElementById("title").value;
-        const author = document.getElementById("author").value;
-        const category = document.getElementById("category").value;
-        const copies = document.getElementById("copies").value;
-
-        // Create Book Object
         const book = {
-            title: title,
-            author: author,
-            category: category,
-            totalCopies: Number(copies),
-            availableCopies: Number(copies)
+            title: document.getElementById("title").value,
+            author: document.getElementById("author").value,
+            category: document.getElementById("category").value,
+            totalCopies: Number(document.getElementById("copies").value),
+            availableCopies: Number(document.getElementById("copies").value)
         };
 
         try {
 
-            // Save Book through API
-            const newBook = await addBook(book);
+            await addBook(book);
 
-            console.log("Saved Book:", newBook);
-
-            // Success Message
             const message = document.getElementById("message");
 
             message.innerText = "✔ Book added successfully!";
             message.style.display = "block";
 
-            // Hide Message after 3 Seconds
             setTimeout(function () {
                 message.style.display = "none";
             }, 3000);
 
-            // Clear Form
             bookForm.reset();
 
         } catch (error) {
 
             alert("Cannot reach the server");
-
             console.error(error);
 
         } finally {
 
-            // Enable Button Again
             submitButton.disabled = false;
             submitButton.innerText = "Add Book";
         }
-
     });
-
 }
 
 
@@ -83,7 +64,8 @@ if (tableBody) {
 
     let books = [];
 
-    // Function to Display Books
+
+    // Display Books
     function displayBooks(bookList) {
 
         tableBody.innerHTML = "";
@@ -92,38 +74,49 @@ if (tableBody) {
 
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6">No books added yet</td>
+                    <td colspan="7">No books added yet</td>
                 </tr>
             `;
 
-        } else {
-
-            bookList.forEach(function (book) {
-
-                tableBody.innerHTML += `
-                    <tr>
-                        <td>${book.id}</td>
-                        <td>${book.title}</td>
-                        <td>${book.author}</td>
-                        <td>${book.category}</td>
-                        <td>${book.totalCopies}</td>
-                        <td>${book.availableCopies}</td>
-                    </tr>
-                `;
-
-            });
-
+            return;
         }
 
+        bookList.forEach(function (book) {
+
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${book.id}</td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.category}</td>
+                    <td>${book.totalCopies}</td>
+                    <td>${book.availableCopies}</td>
+
+                    <td>
+                        <a
+                            href="edit-book.html?id=${book.id}"
+                            class="edit-btn">
+                            Edit
+                        </a>
+
+                        <button
+                            class="delete-btn"
+                            onclick="removeBook('${book.id}')">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
     }
 
 
-    // Load Books from API
+    // Load Books
     async function loadBooks() {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6">Loading...</td>
+                <td colspan="7">Loading...</td>
             </tr>
         `;
 
@@ -137,17 +130,66 @@ if (tableBody) {
 
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6">Cannot reach the server</td>
+                    <td colspan="7">
+                        Cannot reach the server
+                    </td>
                 </tr>
             `;
 
             console.error(error);
         }
-
     }
 
 
-    // Load All Books
+    // Delete Book
+    window.removeBook = async function (bookId) {
+
+        const confirmDelete =
+            confirm("Are you sure you want to delete this book?");
+
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+
+            const issues = await getIssues();
+
+            const activeIssue = issues.find(function (issue) {
+
+                return (
+                    String(issue.bookId) === String(bookId) &&
+                    issue.returnDate === ""
+                );
+            });
+
+
+            // Do not delete currently issued book
+            if (activeIssue) {
+
+                alert(
+                    "Cannot delete this book because it is currently issued."
+                );
+
+                return;
+            }
+
+
+            await deleteBook(bookId);
+
+            alert("Book deleted successfully!");
+
+            await loadBooks();
+
+        } catch (error) {
+
+            alert("Cannot reach the server");
+            console.error(error);
+        }
+    };
+
+
+    // Load Books
     loadBooks();
 
 
@@ -156,21 +198,24 @@ if (tableBody) {
 
         search.addEventListener("keyup", function () {
 
-            const searchValue = search.value.toLowerCase();
+            const searchValue =
+                search.value.toLowerCase();
 
-            const filteredBooks = books.filter(function (book) {
+            const filteredBooks =
+                books.filter(function (book) {
 
-                return (
-                    book.title.toLowerCase().includes(searchValue) ||
-                    book.author.toLowerCase().includes(searchValue)
-                );
+                    return (
+                        book.title
+                            .toLowerCase()
+                            .includes(searchValue) ||
 
-            });
+                        book.author
+                            .toLowerCase()
+                            .includes(searchValue)
+                    );
+                });
 
             displayBooks(filteredBooks);
-
         });
-
     }
-
 }
