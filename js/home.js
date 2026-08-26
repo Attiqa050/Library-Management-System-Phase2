@@ -1,18 +1,41 @@
-
 // ===============================
 // Home Dashboard
 // ===============================
 
-// Get Data from localStorage
-let books = JSON.parse(localStorage.getItem("books")) || [];
-let members = JSON.parse(localStorage.getItem("members")) || [];
-let issuedBooks = JSON.parse(localStorage.getItem("issuedBooks")) || [];
+async function loadDashboard() {
 
-// Show Total Books
-document.getElementById("totalBooks").innerText = books.length;
+    try {
 
-// Show Total Members
-document.getElementById("totalMembers").innerText = members.length;
+        // Get Data from API
+        const books = await getBooks();
+        const members = await getMembers();
+        const issues = await getIssues();
 
-// Show Issued Books
-document.getElementById("issuedBooks").innerText = issuedBooks.length;
+        // Count Currently Issued Books
+        const activeIssues = issues.filter(function (issue) {
+            return issue.returnDate === "";
+        });
+
+        // Show Dashboard Counts
+        document.getElementById("totalBooks").innerText =
+            books.length;
+
+        document.getElementById("totalMembers").innerText =
+            members.length;
+
+        document.getElementById("issuedBooks").innerText =
+            activeIssues.length;
+
+    } catch (error) {
+
+        document.getElementById("totalBooks").innerText = "Error";
+        document.getElementById("totalMembers").innerText = "Error";
+        document.getElementById("issuedBooks").innerText = "Error";
+
+        console.error(error);
+    }
+}
+
+
+// Load Dashboard
+loadDashboard();

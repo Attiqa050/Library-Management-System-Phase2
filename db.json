@@ -1,5 +1,22 @@
 {
-  "books": [],
-  "members": [],
+  "books": [
+    {
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "category": "Self Help",
+      "totalCopies": 10,
+      "availableCopies": 10,
+      "id": "l7HUW72Bzg8"
+    }
+  ],
+  "members": [
+    {
+      "name": "Hannah",
+      "rollNo": "SP24-BSE-065",
+      "email": "hannahmaryam@gmail.com",
+      "phone": "0318 1234213",
+      "id": "DU0zs-TuPZM"
+    }
+  ],
   "issues": []
 }
