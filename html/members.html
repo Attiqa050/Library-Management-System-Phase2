@@ -12,115 +12,235 @@
 
 <body>
 
-    <nav class="navbar">
+    <div class="app-layout">
 
-        <div class="logo">
-            📚 LibraryMS
-        </div>
+        <!-- ================= SIDEBAR ================= -->
 
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="add-book.html">Add Book</a></li>
-            <li><a href="members.html" class="active">Members</a></li>
-            <li><a href="issue-book.html">Issue Book</a></li>
-            <li><a href="issued-books.html">Issued Books</a></li>
-        </ul>
+        <aside class="sidebar">
 
-    </nav>
+            <div class="sidebar-logo">
 
+                <span class="logo-icon">📚</span>
 
-    <!-- ================= Add Member Form ================= -->
+                <div>
+                    <h2>LibraryMS</h2>
+                    <p>Management System</p>
+                </div>
 
-    <section class="form-container">
-
-        <div id="message"></div>
-
-        <h1>Add New Member</h1>
-
-        <form id="memberForm">
-
-            <div class="input-group">
-                <label for="name">Member Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter Member Name"
-                    required
-                >
             </div>
 
-            <div class="input-group">
-                <label for="rollNo">Roll Number</label>
-                <input
-                    type="text"
-                    id="rollNo"
-                    placeholder="Enter Roll Number"
-                    required
-                >
+            <div class="menu-title">
+                MAIN MENU
             </div>
 
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter Email Address"
-                    required
-                >
+            <ul class="sidebar-menu">
+
+                <li>
+                    <a href="home.html">
+                        <span>🏠</span>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="books.html">
+                        <span>📚</span>
+                        Books
+                    </a>
+                </li>
+
+                <li>
+                    <a href="add-book.html">
+                        <span>➕</span>
+                        Add Book
+                    </a>
+                </li>
+
+                <li>
+                    <a href="members.html" class="active">
+                        <span>👥</span>
+                        Members
+                    </a>
+                </li>
+
+                <li>
+                    <a href="issue-book.html">
+                        <span>📖</span>
+                        Issue Book
+                    </a>
+                </li>
+
+                <li>
+                    <a href="issued-books.html">
+                        <span>📋</span>
+                        Issued Books
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="sidebar-bottom">
+
+                <a href="../logout.php" class="logout-btn">
+                    <span>↪</span>
+                    Logout
+                </a>
+
             </div>
 
-            <div class="input-group">
-                <label for="phone">Phone Number</label>
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter Phone Number"
-                    required
-                >
-            </div>
-
-            <button type="submit" class="btn">
-                Add Member
-            </button>
-
-        </form>
+        </aside>
 
 
-        <hr>
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- ================= TOP BAR ================= -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Members</h1>
+                    <p>Add and manage registered library members</p>
+                </div>
+
+                <div class="admin-badge">
+
+                    <div class="admin-icon">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Librarian</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                </div>
+
+            </header>
 
 
-        <!-- ================= Members List ================= -->
+            <!-- ================= MEMBER SECTION ================= -->
 
-        <h2>Members List</h2>
+            <section class="form-container">
 
-        <table class="books-table">
+                <div id="message"></div>
 
-            <thead>
+                <h1>Add New Member</h1>
 
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Roll No</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
+                <form id="memberForm">
 
-            </thead>
+                    <div class="input-group">
 
-            <tbody id="memberTableBody">
+                        <label for="name">
+                            Member Name
+                        </label>
 
-            </tbody>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter Member Name"
+                            required
+                        >
 
-        </table>
+                    </div>
 
-    </section>
+
+                    <div class="input-group">
+
+                        <label for="rollNo">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rollNo"
+                            placeholder="Enter Roll Number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter Email Address"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter Phone Number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="btn">
+                        Add Member
+                    </button>
+
+                </form>
+
+
+                <hr>
+
+
+                <!-- ================= MEMBERS LIST ================= -->
+
+                <h2>Members List</h2>
+
+                <div class="table-responsive">
+
+                    <table class="books-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Roll No</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="memberTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
 
 
     <!-- ================= JavaScript ================= -->
 
-    <script src="../js/api.js"></script>
     <script src="../js/members.js"></script>
 
 </body>

@@ -12,68 +12,224 @@
 
 <body>
 
-    <nav class="navbar">
+    <div class="app-layout">
 
-        <div class="logo">
-            📚 LibraryMS
-        </div>
+        <!-- ================= SIDEBAR ================= -->
 
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="books.html" class="active">Books</a></li>
-            <li><a href="add-book.html">Add Book</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="issue-book.html">Issue Book</a></li>
-            <li><a href="issued-books.html">Issued Books</a></li>
-        </ul>
+        <aside class="sidebar">
 
-    </nav>
+            <div class="sidebar-logo">
 
-    <!-- Books Section -->
-    <section class="form-container">
+                <span class="logo-icon">📚</span>
 
-        <h1>Books List</h1>
+                <div>
+                    <h2>LibraryMS</h2>
+                    <p>Management System</p>
+                </div>
 
-        <!-- Search Box -->
-        <div class="input-group">
+            </div>
 
-            <label for="search">Search Book</label>
+            <div class="menu-title">
+                MAIN MENU
+            </div>
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search by Title or Author"
-            >
+            <ul class="sidebar-menu">
 
-        </div>
+                <li>
+                    <a href="home.html">
+                        <span>🏠</span>
+                        Dashboard
+                    </a>
+                </li>
 
-        <!-- Books Table -->
-        <table class="books-table">
+                <li>
+                    <a href="books.html" class="active">
+                        <span>📚</span>
+                        Books
+                    </a>
+                </li>
 
-            <thead>
+                <li>
+                    <a href="add-book.html">
+                        <span>➕</span>
+                        Add Book
+                    </a>
+                </li>
 
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Total Copies</th>
-                    <th>Available</th>
-                    <th>Actions</th>
-                </tr>
+                <li>
+                    <a href="members.html">
+                        <span>👥</span>
+                        Members
+                    </a>
+                </li>
 
-            </thead>
+                <li>
+                    <a href="issue-book.html">
+                        <span>📖</span>
+                        Issue Book
+                    </a>
+                </li>
 
-            <tbody id="bookTableBody">
+                <li>
+                    <a href="issued-books.html">
+                        <span>📋</span>
+                        Issued Books
+                    </a>
+                </li>
 
-            </tbody>
+            </ul>
 
-        </table>
+            <div class="sidebar-bottom">
 
-    </section>
+                <a href="../logout.php" class="logout-btn">
+                    <span>↪</span>
+                    Logout
+                </a>
 
-    <!-- JavaScript -->
-    <script src="../js/api.js"></script>
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- Top Bar -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Books Management</h1>
+                    <p>View and manage all books in the library</p>
+                </div>
+
+                <div class="admin-badge">
+
+                    <div class="admin-icon">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Librarian</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= PAGE HEADER ================= -->
+
+            <section class="books-header">
+
+                <div class="books-header-left">
+
+                    <div class="books-header-icon">
+                        📚
+                    </div>
+
+                    <div>
+                        <h2>Books Collection</h2>
+
+                        <p>
+                            Search and manage books available
+                            in the library.
+                        </p>
+                    </div>
+
+                </div>
+
+                <a href="add-book.html" class="add-book-top-btn">
+                    <span>＋</span>
+                    Add New Book
+                </a>
+
+            </section>
+
+
+            <!-- ================= BOOKS CONTENT ================= -->
+
+            <section class="books-management-card">
+
+                <!-- Search Section -->
+
+                <div class="books-search-section">
+
+                    <div class="search-heading">
+                        <h3>Search Books</h3>
+                        <p>Find a book by its title or author</p>
+                    </div>
+
+                    <div class="modern-search-box">
+
+                        <span class="search-icon">🔍</span>
+
+                        <input
+                            type="text"
+                            id="search"
+                            placeholder="Search by title or author..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= TABLE HEADER ================= -->
+
+                <div class="table-title">
+
+                    <div>
+                        <h3>All Books</h3>
+                    </div>
+
+                    <span class="database-label">
+                        Library Database
+                    </span>
+
+                </div>
+
+
+                <!-- ================= BOOKS TABLE ================= -->
+
+                <div class="table-responsive">
+
+                    <table class="books-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Total Copies</th>
+                                <th>Available</th>
+                            </tr>
+
+                        </thead>
+
+                        <!-- IMPORTANT: SAME ID FOR books.js -->
+
+                        <tbody id="bookTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= JavaScript ================= -->
+
     <script src="../js/books.js"></script>
 
 </body>

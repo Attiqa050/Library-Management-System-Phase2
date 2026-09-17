@@ -5,8 +5,16 @@
       "author": "James Clear",
       "category": "Self Help",
       "totalCopies": 10,
-      "availableCopies": 10,
+      "availableCopies": 9,
       "id": "l7HUW72Bzg8"
+    },
+    {
+      "title": "Kite Runner",
+      "author": "Khaled Hosseini",
+      "category": "Fiction",
+      "totalCopies": 25,
+      "availableCopies": 25,
+      "id": "KMCDpQJ2D9o"
     }
   ],
   "members": [
@@ -16,7 +24,50 @@
       "email": "hannahmaryam@gmail.com",
       "phone": "0318 1234213",
       "id": "DU0zs-TuPZM"
+    },
+    {
+      "name": "Ateeqa Zahid",
+      "rollNo": "SP24-BSE-050",
+      "email": "ateeqazahidmp4@gmail.com",
+      "phone": "03185017421",
+      "id": "QBkob6S8qsI"
+    },
+    {
+      "name": "Ayesha",
+      "rollNo": "SP24-BSE-013",
+      "email": "ayesha123@gmail.com",
+      "phone": "0318 5017421",
+      "id": "_2eVp9mb7rk"
     }
   ],
-  "issues": []
+  "issues": [
+    {
+      "bookId": "KMCDpQJ2D9o",
+      "memberId": "QBkob6S8qsI",
+      "issueDate": "0026-12-20",
+      "dueDate": "0027-01-03",
+      "returnDate": "2026-09-16",
+      "fine": 3651880,
+      "id": "VQl_Kx-0q3E"
+    },
+    {
+      "bookId": "l7HUW72Bzg8",
+      "memberId": "QBkob6S8qsI",
+      "issueDate": "2026-07-01",
+      "dueDate": "2026-07-15",
+      "returnDate": "",
+      "fine": 0,
+      "id": "WiPs9Y_pPwU"
+    },
+    {
+      "bookId": "l7HUW72Bzg8",
+      "memberId": "DU0zs-TuPZM",
+      "issueDate": "0026-12-20",
+      "dueDate": "0027-01-03",
+      "returnDate": "2026-09-16",
+      "fine": 3651880,
+      "id": "3gRE6lnTWhk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

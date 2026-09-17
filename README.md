@@ -142,3 +142,6 @@ Sample book and member records are included for demonstration.
 ## Author
 
 **Attiqa**
+
+<!-- npx json-server db.json -->
+<!-- http://localhost:3000/books -->

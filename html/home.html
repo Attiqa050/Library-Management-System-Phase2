@@ -11,58 +11,254 @@
 
 <body>
 
-    <!-- ================= Navbar ================= -->
+    <div class="app-layout">
 
-    <nav class="navbar">
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
-        <div class="logo">
-            📚 LibraryMS
-        </div>
+            <div class="sidebar-logo">
+                <span class="logo-icon">📚</span>
+                <div>
+                    <h2>LibraryMS</h2>
+                    <p>Management System</p>
+                </div>
+            </div>
 
-        <ul class="nav-links">
-            <li><a href="home.html" class="active">Home</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="add-book.html">Add Book</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="issue-book.html">Issue Book</a></li>
-            <li><a href="issued-books.html">Issued Books</a></li>
-        </ul>
+            <div class="menu-title">MAIN MENU</div>
 
-    </nav>
+            <ul class="sidebar-menu">
 
-    <!-- ================= Welcome Section ================= -->
+                <li>
+                    <a href="home.html" class="active">
+                        <span>🏠</span>
+                        Dashboard
+                    </a>
+                </li>
 
-    <section class="welcome">
+                <li>
+                    <a href="books.html">
+                        <span>📚</span>
+                        Books
+                    </a>
+                </li>
 
-        <h1>Welcome to Library Management System</h1>
+                <li>
+                    <a href="add-book.html">
+                        <span>➕</span>
+                        Add Book
+                    </a>
+                </li>
 
-        <p>
-            Manage Books, Members and Book Issues Easily
-        </p>
+                <li>
+                    <a href="members.html">
+                        <span>👥</span>
+                        Members
+                    </a>
+                </li>
 
-    </section>
+                <li>
+                    <a href="issue-book.html">
+                        <span>📖</span>
+                        Issue Book
+                    </a>
+                </li>
 
-    <!-- ================= Dashboard ================= -->
+                <li>
+                    <a href="issued-books.html">
+                        <span>📋</span>
+                        Issued Books
+                    </a>
+                </li>
 
-    <section class="dashboard">
+            </ul>
 
-        <div class="card">
-            <h2 id="totalBooks">0</h2>
-            <p>Total Books</p>
-        </div>
+            <div class="sidebar-bottom">
+                <a href="../logout.php" class="logout-btn">
+                    <span>↪</span>
+                    Logout
+                </a>
+            </div>
 
-        <div class="card">
-            <h2 id="totalMembers">0</h2>
-            <p>Total Members</p>
-        </div>
+        </aside>
 
-        <div class="card">
-            <h2 id="issuedBooks">0</h2>
-            <p>Issued Books</p>
-        </div>
 
-    </section>
+        <!-- Main Content -->
+        <main class="main-content">
 
+            <!-- Top Bar -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Library Dashboard</h1>
+                    <p>Manage your library efficiently</p>
+                </div>
+
+                <div class="admin-badge">
+                    <div class="admin-icon">A</div>
+
+                    <div>
+                        <strong>Librarian</strong>
+                        <span>Administrator</span>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- Welcome Banner -->
+            <section class="welcome-banner">
+
+                <div class="welcome-content">
+
+                    <span class="welcome-label">
+                        LIBRARY MANAGEMENT SYSTEM
+                    </span>
+
+                    <h2>Welcome Back! 👋</h2>
+
+                    <p>
+                        Manage books, members and book issues
+                        easily from your dashboard.
+                    </p>
+
+                </div>
+
+                <div class="welcome-book-icon">
+                    📚
+                </div>
+
+            </section>
+
+
+            <!-- Statistics -->
+            <div class="section-heading">
+                <div>
+                    <h2>Library Overview</h2>
+                    <p>Current library statistics</p>
+                </div>
+            </div>
+
+
+            <section class="stats-grid">
+
+                <!-- Books -->
+                <div class="stat-card">
+
+                    <div class="stat-icon books-icon">
+                        📚
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Total Books</p>
+                        <h2 id="totalBooks">0</h2>
+                        <span>Books in library</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Members -->
+                <div class="stat-card">
+
+                    <div class="stat-icon members-icon">
+                        👥
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Total Members</p>
+                        <h2 id="totalMembers">0</h2>
+                        <span>Registered members</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Issued -->
+                <div class="stat-card">
+
+                    <div class="stat-icon issued-icon">
+                        📖
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Issued Books</p>
+                        <h2 id="issuedBooks">0</h2>
+                        <span>Currently issued</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Quick Actions -->
+            <div class="section-heading quick-heading">
+
+                <div>
+                    <h2>Quick Actions</h2>
+                    <p>Frequently used library operations</p>
+                </div>
+
+            </div>
+
+
+            <section class="quick-actions">
+
+                <a href="add-book.html" class="action-card">
+
+                    <div class="action-icon">
+                        ➕
+                    </div>
+
+                    <div>
+                        <h3>Add New Book</h3>
+                        <p>Add a book to the library</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+
+                <a href="members.html" class="action-card">
+
+                    <div class="action-icon">
+                        👤
+                    </div>
+
+                    <div>
+                        <h3>Manage Members</h3>
+                        <p>View and manage members</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+
+                <a href="issue-book.html" class="action-card">
+
+                    <div class="action-icon">
+                        📖
+                    </div>
+
+                    <div>
+                        <h3>Issue a Book</h3>
+                        <p>Issue a book to a member</p>
+                    </div>
+
+                    <span class="arrow">→</span>
+
+                </a>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- SAME JavaScript -->
     <script src="../js/api.js"></script>
     <script src="../js/home.js"></script>
 
