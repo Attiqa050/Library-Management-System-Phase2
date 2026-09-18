@@ -15,6 +15,14 @@
       "totalCopies": 25,
       "availableCopies": 25,
       "id": "KMCDpQJ2D9o"
+    },
+    {
+      "title": "Harry Potter",
+      "author": "J.K. Rowling",
+      "category": "Fantasy",
+      "totalCopies": 30,
+      "availableCopies": 30,
+      "id": "nPW95XmXTJQ"
     }
   ],
   "members": [
