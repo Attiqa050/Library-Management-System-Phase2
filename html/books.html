@@ -14,19 +14,16 @@
 
     <div class="app-layout">
 
-        <!-- ================= SIDEBAR ================= -->
-
+        <!-- SIDEBAR -->
         <aside class="sidebar">
 
             <div class="sidebar-logo">
-
                 <span class="logo-icon">📚</span>
 
                 <div>
                     <h2>LibraryMS</h2>
                     <p>Management System</p>
                 </div>
-
             </div>
 
             <div class="menu-title">
@@ -79,24 +76,13 @@
 
             </ul>
 
-            <div class="sidebar-bottom">
-
-                <a href="../logout.php" class="logout-btn">
-                    <span>↪</span>
-                    Logout
-                </a>
-
-            </div>
-
         </aside>
 
 
-        <!-- ================= MAIN CONTENT ================= -->
-
+        <!-- MAIN CONTENT -->
         <main class="main-content">
 
-            <!-- Top Bar -->
-
+            <!-- TOP BAR -->
             <header class="topbar">
 
                 <div>
@@ -120,8 +106,7 @@
             </header>
 
 
-            <!-- ================= PAGE HEADER ================= -->
-
+            <!-- PAGE HEADER -->
             <section class="books-header">
 
                 <div class="books-header-left">
@@ -132,11 +117,7 @@
 
                     <div>
                         <h2>Books Collection</h2>
-
-                        <p>
-                            Search and manage books available
-                            in the library.
-                        </p>
+                        <p>Search and manage books available in the library.</p>
                     </div>
 
                 </div>
@@ -149,12 +130,10 @@
             </section>
 
 
-            <!-- ================= BOOKS CONTENT ================= -->
-
+            <!-- BOOKS CONTENT -->
             <section class="books-management-card">
 
-                <!-- Search Section -->
-
+                <!-- Search -->
                 <div class="books-search-section">
 
                     <div class="search-heading">
@@ -177,8 +156,7 @@
                 </div>
 
 
-                <!-- ================= TABLE HEADER ================= -->
-
+                <!-- TABLE TITLE -->
                 <div class="table-title">
 
                     <div>
@@ -192,8 +170,7 @@
                 </div>
 
 
-                <!-- ================= BOOKS TABLE ================= -->
-
+                <!-- BOOKS TABLE -->
                 <div class="table-responsive">
 
                     <table class="books-table">
@@ -207,14 +184,12 @@
                                 <th>Category</th>
                                 <th>Total Copies</th>
                                 <th>Available</th>
+                                <th>Actions</th>
                             </tr>
 
                         </thead>
 
-                        <!-- IMPORTANT: SAME ID FOR books.js -->
-
                         <tbody id="bookTableBody">
-
                         </tbody>
 
                     </table>
@@ -228,8 +203,7 @@
     </div>
 
 
-    <!-- ================= JavaScript ================= -->
-
+    <!-- JAVASCRIPT -->
     <script src="../js/books.js"></script>
 
 </body>

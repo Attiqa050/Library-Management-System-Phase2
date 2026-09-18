@@ -12,56 +12,188 @@
 
 <body>
 
-    <nav class="navbar">
+    <div class="app-layout">
 
-        <div class="logo">
-            📚 LibraryMS
-        </div>
+        <!-- ================= SIDEBAR ================= -->
 
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="add-book.html">Add Book</a></li>
-            <li><a href="members.html">Members</a></li>
-            <li><a href="issue-book.html">Issue Book</a></li>
-            <li><a href="issued-books.html">Issued Books</a></li>
-        </ul>
+        <aside class="sidebar">
 
-    </nav>
+            <div class="sidebar-logo">
 
-    <section class="form-container">
+                <span class="logo-icon">📚</span>
 
-        <h1>Edit Book</h1>
+                <div>
+                    <h2>LibraryMS</h2>
+                    <p>Management System</p>
+                </div>
 
-        <form id="editBookForm">
-
-            <div class="input-group">
-                <label for="title">Book Title</label>
-                <input type="text" id="title" required>
             </div>
 
-            <div class="input-group">
-                <label for="author">Author Name</label>
-                <input type="text" id="author" required>
+            <div class="menu-title">
+                MAIN MENU
             </div>
 
-            <div class="input-group">
-                <label for="category">Category</label>
-                <input type="text" id="category" required>
-            </div>
+            <ul class="sidebar-menu">
 
-            <div class="input-group">
-                <label for="copies">Total Copies</label>
-                <input type="number" id="copies" min="1" required>
-            </div>
+                <li>
+                    <a href="home.html">
+                        <span>🏠</span>
+                        Dashboard
+                    </a>
+                </li>
 
-            <button type="submit" class="btn">
-                Save Changes
-            </button>
+                <li>
+                    <a href="books.html" class="active">
+                        <span>📚</span>
+                        Books
+                    </a>
+                </li>
 
-        </form>
+                <li>
+                    <a href="add-book.html">
+                        <span>➕</span>
+                        Add Book
+                    </a>
+                </li>
 
-    </section>
+                <li>
+                    <a href="members.html">
+                        <span>👥</span>
+                        Members
+                    </a>
+                </li>
+
+                <li>
+                    <a href="issue-book.html">
+                        <span>📖</span>
+                        Issue Book
+                    </a>
+                </li>
+
+                <li>
+                    <a href="issued-books.html">
+                        <span>📋</span>
+                        Issued Books
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- ================= TOP BAR ================= -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Edit Book</h1>
+                    <p>Update the selected book information</p>
+                </div>
+
+                <div class="admin-badge">
+
+                    <div class="admin-icon">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Librarian</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= EDIT BOOK FORM ================= -->
+
+            <section class="form-container">
+
+                <h1>Edit Book</h1>
+
+                <form id="editBookForm">
+
+                    <div class="input-group">
+
+                        <label for="title">
+                            Book Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="author">
+                            Author Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="author"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <input
+                            type="text"
+                            id="category"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="copies">
+                            Total Copies
+                        </label>
+
+                        <input
+                            type="number"
+                            id="copies"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="btn">
+                        Save Changes
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
 
     <script src="../js/api.js"></script>
     <script src="../js/edit-book.js"></script>
